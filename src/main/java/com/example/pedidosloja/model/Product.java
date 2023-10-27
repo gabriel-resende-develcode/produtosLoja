@@ -6,10 +6,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Data
 @Entity
 @Table(name = "products")
-@Data
-public class Product {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
