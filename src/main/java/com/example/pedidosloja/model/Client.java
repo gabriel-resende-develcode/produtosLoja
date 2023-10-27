@@ -1,22 +1,25 @@
 package com.example.pedidosloja.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "clients")
-@Data
+@EqualsAndHashCode(of = "id")
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CPF(message = "invalid cpf format")
-    @Column(length = 14, nullable = false, unique = true)
-    private String cpf;
+    @Embedded
+    PersonalData personalData;
 
-    @Column(length = 150, nullable = false)
-    private String name;
+    public String getName() {
+        return personalData.getName();
+    }
+
+    public String getCpf() {
+        return personalData.getCpf();
+    }
 }
