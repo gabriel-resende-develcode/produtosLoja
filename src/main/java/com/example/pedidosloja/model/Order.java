@@ -20,11 +20,17 @@ public class Order {
     private LocalDateTime date = LocalDateTime.now();
 
     @Column(nullable = false)
-    private BigDecimal totalValue;
+    private BigDecimal totalValue = BigDecimal.ZERO;
 
     @ManyToOne
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    public void addItem(OrderItem item) {
+        item.setOrder(this);
+        orderItems.add(item);
+        totalValue = totalValue.add(item.getTotalValue());
+    }
 }
