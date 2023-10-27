@@ -14,6 +14,7 @@ public class Client {
     private Long id;
 
     @CPF(message = "invalid cpf format")
+    @Column(length = 14, nullable = false, unique = true)
     private String cpf;
 
     @Column(length = 150, nullable = false)
