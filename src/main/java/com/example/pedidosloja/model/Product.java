@@ -27,6 +27,6 @@ public class Product {
 
     private LocalDate registrationDate = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 }

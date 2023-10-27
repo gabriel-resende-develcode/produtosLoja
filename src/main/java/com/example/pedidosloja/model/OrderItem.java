@@ -20,13 +20,13 @@ public class OrderItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    public BigDecimal getTotalValue(){
+    public BigDecimal getTotalValue() {
         return unitPrice.multiply(new BigDecimal(quantity));
     }
 }

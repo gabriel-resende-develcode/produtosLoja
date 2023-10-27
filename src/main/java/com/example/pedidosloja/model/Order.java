@@ -22,7 +22,7 @@ public class Order {
     @Column(nullable = false)
     private BigDecimal totalValue = BigDecimal.ZERO;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
