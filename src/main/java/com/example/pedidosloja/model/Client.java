@@ -2,10 +2,12 @@ package com.example.pedidosloja.model;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 @Entity
 @Table(name = "clients")
-@EqualsAndHashCode(of = "id")
 public class Client {
 
     @Id
@@ -14,6 +16,10 @@ public class Client {
 
     @Embedded
     PersonalData personalData;
+
+    public Client(String name, String cpf){
+        personalData = new PersonalData(cpf, name);
+    }
 
     public String getName() {
         return personalData.getName();
